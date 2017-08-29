@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        
+        Parse.enableLocalDatastore()
+        
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
             ParseMutableClientConfiguration.applicationId = "989b4385b24fb1195950a9dcb5c924f0913cac81"
             ParseMutableClientConfiguration.clientKey = "845ecc696bc9f1b80bf345b27956dcdf53d9e7f8"

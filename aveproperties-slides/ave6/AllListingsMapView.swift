@@ -79,7 +79,8 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
         let annotationQuery = PFQuery(className: PROP_CLASS_NAME)
         let swOfSF = PFGeoPoint(latitude:46.623988, longitude:-123.485756)
         let neOfSF = PFGeoPoint(latitude:48.878275, longitude:-120.307961)
-        
+        annotationQuery.cachePolicy = .networkElseCache
+
         annotationQuery.whereKey("addressItems",withinGeoBoxFromSouthwest: swOfSF, toNortheast: neOfSF)
         annotationQuery.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {
@@ -124,8 +125,8 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
             }else{
                 pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinIdent);
 //                let annoView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Default")
-                let swiftColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-                
+                let swiftColor = #colorLiteral(red: 0.4352941215, green: 0.4431372583, blue: 0.4745098054, alpha: 1)
+
                 pinView.pinTintColor = swiftColor
                 pinView.animatesDrop = true
                 pinView.canShowCallout = true

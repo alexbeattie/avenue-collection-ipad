@@ -54,8 +54,8 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
 //        expandCollapse.setImage(UIImage(named:"icons8-expand"), for: .normal)
         
         
-        if (mapHeightConstraint.constant >= 210){
-            mapHeightConstraint.constant = 600
+        if (mapHeightConstraint.constant == 210){
+            mapHeightConstraint.constant = 500
             tableViewHeighConstraint.constant = 0
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()

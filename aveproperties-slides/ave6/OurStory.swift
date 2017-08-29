@@ -16,6 +16,8 @@ class OurStory: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var propObj = PFObject(className: "ourStory")
     var bioStuff:[PFObject] = []
     var imageView = UIImageView()
+    var imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+
     var parallexFactor: CGFloat = 2.0
     var imageHeight: CGFloat = 200.0 {
         didSet {
@@ -53,10 +55,12 @@ class OurStory: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         super.viewDidLoad()
         startActivityIndicator()
-        navigationItem.title? = "OUR STORY"
+//        navigationItem.title? = "OUR STORY"
 //        self.title = "Our Story"
-        
-        
+        imageView2.contentMode = .scaleAspectFit
+        let image = UIImage(named: "team-foster-logo")
+        imageView2.image = image
+        navigationItem.titleView = imageView2
         
 
         self.imageView.image = UIImage(named: "seattle-one")
@@ -84,6 +88,8 @@ class OurStory: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
    
     func queryForTable() {
         let query = PFQuery(className: "ourStory")
+        query.cachePolicy = .networkElseCache
+
         query.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {
                 if let objects = objects {
@@ -143,7 +149,7 @@ class OurStory: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         cell.bioDescLbl?.text = propObj["about"] as? String
         if let eachName = propObj["theTitle"] as? String {
-            cell.theName?.text = eachName
+            cell.theName?.text = eachName.uppercased()
             
         }
         stopActivityIndicator()

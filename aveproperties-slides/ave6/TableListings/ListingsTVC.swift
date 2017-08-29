@@ -56,7 +56,8 @@ class ListingsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func queryForTable() {
         let query = PFQuery(className: "allListings")
         query.order(byDescending: "price")
-//        query.cachePolicy = .networkElseCache
+        query.cachePolicy = .networkElseCache
+//        query.cachePolicy = .cacheOnly
         query.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {
                 if let objects = objects {
@@ -138,7 +139,7 @@ class ListingsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         listingClass = myArray[indexPath.row]
        
         if let theName = listingClass["name"] as? String {
-            cell.nameLbl.text = theName
+            cell.nameLbl.text = theName.uppercased()
         }
         
         if let thePrice = listingClass["cost"] as? String {
@@ -182,7 +183,9 @@ class ListingsTVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 
         var listingClass = PFObject(className: "allListings")
         listingClass = myArray[indexPath.row]
-
+        let barBtn = UIBarButtonItem()
+        barBtn.title = ""
+        navigationItem.backBarButtonItem = barBtn
         let pdVC =  storyboard!.instantiateViewController(withIdentifier: "PropertyDetails") as! NewDetailViewController
         pdVC.propObj = listingClass
         navigationController?.pushViewController(pdVC, animated: true)

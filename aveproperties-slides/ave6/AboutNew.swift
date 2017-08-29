@@ -83,6 +83,8 @@ class AboutNew: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 
     func queryForTable() {
     let query = PFQuery(className: "Bio")
+        query.cachePolicy = .networkElseCache
+
         query.findObjectsInBackground { (objects, error) -> Void in
                 if error == nil {
                 if let objects = objects {
@@ -128,7 +130,7 @@ class AboutNew: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
        
         cell.bioDescLbl?.text = propObj["bio"] as? String
         if let eachName = propObj["name"] as? String {
-            cell.theName?.text = eachName
+            cell.theName?.text = eachName.uppercased()
             
         }
 

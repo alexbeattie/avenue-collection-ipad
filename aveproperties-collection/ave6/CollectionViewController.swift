@@ -125,9 +125,9 @@ class CollectionViewController: UICollectionViewController, UITabBarDelegate {
         recentListings.removeAll()
         
         let query = PFQuery(className: PROP_CLASS_NAME)
-        
-        query.order(byDescending: "price")
         query.cachePolicy = .networkElseCache
+
+        query.order(byDescending: "price")
         
         query.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {

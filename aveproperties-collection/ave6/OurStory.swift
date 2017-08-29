@@ -87,6 +87,8 @@ class OurStory: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
    
     func queryForTable() {
         let query = PFQuery(className: "ourStory")
+        query.cachePolicy = .networkElseCache
+
         query.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {
                 if let objects = objects {

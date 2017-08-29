@@ -95,6 +95,7 @@ class AboutNew: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 
     func queryForTable() {
     let query = PFQuery(className: "Bio")
+        query.cachePolicy = .networkElseCache
         query.findObjectsInBackground { (objects, error) -> Void in
                 if error == nil {
                 if let objects = objects {

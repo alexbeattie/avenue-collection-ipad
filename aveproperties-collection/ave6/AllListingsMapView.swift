@@ -104,7 +104,7 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
         let annotationQuery = PFQuery(className: PROP_CLASS_NAME)
         let swOfSF = PFGeoPoint(latitude:46.623988, longitude:-123.485756)
         let neOfSF = PFGeoPoint(latitude:48.878275, longitude:-120.307961)
-        
+        annotationQuery.cachePolicy = .networkElseCache
         annotationQuery.whereKey("addressItems",withinGeoBoxFromSouthwest: swOfSF, toNortheast: neOfSF)
         annotationQuery.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {

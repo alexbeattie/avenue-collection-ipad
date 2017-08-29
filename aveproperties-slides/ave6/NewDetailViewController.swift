@@ -115,9 +115,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, MFMailCompos
         containerScrollView.contentSize = CGSize(width:containerScrollView.frame.size.width, height:detailsView.frame.size.height + detailsView.frame.origin.y)
 
         let origImage = UIImage(named: "icons8-expand")
-        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
-//        expandCollapse.setImage(tintedImage, for: .normal)
-//        expandCollapse.tintColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+//        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         
       
 
